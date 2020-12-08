@@ -62,6 +62,11 @@ namespace AdventOfCode2020
                         var result6 = Day06.CalculateSolution(part, data6);
                         ShowResult(dayOfAdvent, result6);
                         break;
+                    case 7:
+                        var data7 = GetData(AdventDays.Day07);
+                        var result7 = Day07.CalculateSolution(part, data7);
+                        ShowResult(dayOfAdvent, result7);
+                        break;
                     default:
                         MessageBox.Show($"Solution for day {dayOfAdvent} not implemented.", "No solution",
                             MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
