@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace AdventOfCode2020.Solutions
 {
-    public static class Day03
+    public class Day03 : IPuzzle
     {
         private const char OpenSquare = '.';
         private const char TreeSquare = '#';
 
-        public static string CalculateSolution(Parts part, string inputData)
+        public string CalculateSolution(Parts part, string inputData)
         {
             var treeMap = inputData.Split(Environment.NewLine);
             

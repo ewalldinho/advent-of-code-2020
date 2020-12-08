@@ -1,6 +1,5 @@
-﻿using System;
-using AdventOfCode2020.Solutions;
-using AdventOfCode2020.Utils;
+﻿using AdventOfCode2020.Utils;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -30,48 +29,11 @@ namespace AdventOfCode2020
 
                 var inputData = GetData((AdventDays) dayOfAdvent);
 
-                switch (dayOfAdvent)
-                {
-                    case 1:
-                        var data1 = GetData(AdventDays.Day01);
-                        var result1 = Day01.CalculateSolution(part, data1);
-                        ShowResult(dayOfAdvent, result1);
-                        break;
-                    case 2:
-                        var data2 = GetData(AdventDays.Day02);
-                        var result2 = Day02.CalculateSolution(part, data2);
-                        ShowResult(dayOfAdvent, result2);
-                        break;
-                    case 3:
-                        var data3 = GetData(AdventDays.Day03);
-                        var result3 = Day03.CalculateSolution(part, data3);
-                        ShowResult(dayOfAdvent, result3);
-                        break;
-                    case 4:
-                        var data4 = GetData(AdventDays.Day04);
-                        var result4 = Day04.CalculateSolution(part, data4);
-                        ShowResult(dayOfAdvent, result4);
-                        break;
-                    case 5:
-                        var data5 = GetData(AdventDays.Day05);
-                        var result5 = Day05.CalculateSolution(part, data5);
-                        ShowResult(dayOfAdvent, result5);
-                        break;
-                    case 6:
-                        var data6 = GetData(AdventDays.Day06);
-                        var result6 = Day06.CalculateSolution(part, data6);
-                        ShowResult(dayOfAdvent, result6);
-                        break;
-                    case 7:
-                        var data7 = GetData(AdventDays.Day07);
-                        var result7 = Day07.CalculateSolution(part, data7);
-                        ShowResult(dayOfAdvent, result7);
-                        break;
-                    default:
-                        MessageBox.Show($"Solution for day {dayOfAdvent} not implemented.", "No solution",
-                            MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
-                        break;
-                }
+                var puzzleSolution = PuzzleSolutionFactory.GetPuzzleSolution(dayOfAdvent);
+
+                var result = puzzleSolution.CalculateSolution(part, inputData);
+
+                ShowResult(dayOfAdvent, result);
             }
             catch (Exception ex)
             {

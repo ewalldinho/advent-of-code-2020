@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace AdventOfCode2020.Solutions
 {
-    public static class Day06
+    public class Day06 : IPuzzle
     {
-        public static string CalculateSolution(Parts part, string inputData)
+        public string CalculateSolution(Parts part, string inputData)
         {
             var formsStatsData = inputData.Split(Environment.NewLine + Environment.NewLine);
 
@@ -15,12 +15,8 @@ namespace AdventOfCode2020.Solutions
             {
                 case Parts.Part1:
                     var anyYesAnswerCount = formsStatsData
-                        .Select(groupData => new FormYesToAnyStats
-                        {
-                            PersonCount = groupData.Split(Environment.NewLine).Length,
-                            DistinctAnswerCount = groupData.Distinct().Count(c => !char.IsWhiteSpace(c))
-                        })
-                        .Sum(x => x.DistinctAnswerCount);
+                        .Select(groupData => groupData.Distinct().Count(c => !char.IsWhiteSpace(c)))
+                        .Sum();
                     return anyYesAnswerCount.ToString();
                 case Parts.Part2:
                     var allYesAnswerCount = formsStatsData.Select(groupData => CalculateGroupStats(groupData)).Sum();

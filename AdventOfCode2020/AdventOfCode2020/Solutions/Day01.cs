@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace AdventOfCode2020.Solutions
 {
-    public static class Day01
+    public class Day01 : IPuzzle
     {
-        public static string CalculateSolution(Parts part, string inputData)
+        public string CalculateSolution(Parts part, string inputData)
         {
             var expenses = inputData.Split(Environment.NewLine).Select(int.Parse).ToList();
 
@@ -40,7 +40,7 @@ namespace AdventOfCode2020.Solutions
             throw new ApplicationException("Can not solve it!");
         }
 
-        private static  int FindProductOfThree(List<int> expenses)
+        private static int FindProductOfThree(List<int> expenses)
         {
             for (var i = 0; i < expenses.Count - 2; i++)
             for (var j = i + 1; j < expenses.Count - 1; j++)

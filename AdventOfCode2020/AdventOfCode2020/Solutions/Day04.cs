@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020.Solutions
 {
-    public static class Day04
+    public class Day04 : IPuzzle
     {
-        public static string CalculateSolution(Parts part, string inputData)
+        public string CalculateSolution(Parts part, string inputData)
         {
             var passportSeparator = string.Concat(Environment.NewLine, string.Empty, Environment.NewLine);
             var passports = inputData.Split(passportSeparator).Select(Passport.Parse).ToList();

@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace AdventOfCode2020.Solutions
 {
-    public static class Day05
+    public class Day05 : IPuzzle
     {
-        public static string CalculateSolution(Parts part, string inputData)
+        public string CalculateSolution(Parts part, string inputData)
         {
             var seatDescriptions = inputData.Split(Environment.NewLine);
 
-            var seatIds = seatDescriptions.Select(seat => CalculateSeatId(seat));
+            var seatIds = seatDescriptions.Select(CalculateSeatId).ToList();
 
             switch (part)
             {

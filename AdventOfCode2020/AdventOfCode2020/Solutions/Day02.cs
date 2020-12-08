@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020.Solutions
 {
-    public static class Day02
+    public class Day02 : IPuzzle
     {
-        public static string CalculateSolution(Parts part, string inputData)
+        public string CalculateSolution(Parts part, string inputData)
         {
             var passwordsWithPolicies = inputData.Split(Environment.NewLine)
                 .Select(x =>
