@@ -1,5 +1,6 @@
 ﻿using AdventOfCode2020.Utils;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,27 +18,25 @@ namespace AdventOfCode2020
             InitializeComponent();
         }
 
-        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
                 if (!(sender is Label label)) return;
+
                 var tag = (string) label.Tag;
                 var dayAndPart = tag.Split('_');
                 var dayOfAdvent = int.Parse(dayAndPart[0]);
                 var part = (Parts) int.Parse(dayAndPart[1]);
 
-                var inputData = GetData((AdventDays) dayOfAdvent);
-
-                var puzzleSolution = PuzzleSolutionFactory.GetPuzzleSolution(dayOfAdvent);
-
-                var result = puzzleSolution.CalculateSolution(part, inputData);
-
-                ShowResult(dayOfAdvent, result);
+                await RunSolution(dayOfAdvent, part);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Message: {ex.Message}", "Error", MessageBoxButton.OK);
+
+                StatusBar.Visibility = Visibility.Hidden;
+                StatusText.Visibility = Visibility.Hidden;
             }
         }
 
@@ -96,6 +95,23 @@ namespace AdventOfCode2020
             }
             
             return PuzzleData.GetData(day);
+        }
+
+        private async Task RunSolution(int dayOfAdvent, Parts part)
+        {
+            StatusBar.Visibility = Visibility.Visible;
+            StatusText.Visibility = Visibility.Visible;
+
+            var inputData = GetData((AdventDays)dayOfAdvent);
+
+            var puzzleSolution = PuzzleSolutionFactory.GetPuzzleSolution(dayOfAdvent);
+
+            var result = await Task.Run(() => puzzleSolution.CalculateSolution(part, inputData));
+
+            StatusBar.Visibility = Visibility.Hidden;
+            StatusText.Visibility = Visibility.Hidden;
+
+            ShowResult(dayOfAdvent, result);
         }
 
         private void ShowResult(int day, string result)
