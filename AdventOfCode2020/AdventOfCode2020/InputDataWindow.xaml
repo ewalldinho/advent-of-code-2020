@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Input data:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="tbInput" Grid.Row="1" Margin="10,0,10,5" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="DarkGray" AcceptsReturn="True" />
+        <TextBox x:Name="tbInput" Grid.Row="1" Margin="10,0,10,5" Text="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="DarkGray" AcceptsReturn="True" FontFamily="Courier New" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" />
         
         <StackPanel Grid.Row="2" FlowDirection="RightToLeft" Orientation="Horizontal" Margin="10,0,10,10">
             <Button Grid.Row="2" x:Name="btnOk" Content="OK" HorizontalAlignment="Right" Width="100" Margin="0, 0, 10, 0" Click="btnOk_Click" />
