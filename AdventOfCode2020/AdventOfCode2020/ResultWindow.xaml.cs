@@ -29,7 +29,7 @@ namespace AdventOfCode2020
 
         private async void BtnCopy_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is not Button btn) return;
+            if (!(sender is Button btn)) return;
 
             try
             {
