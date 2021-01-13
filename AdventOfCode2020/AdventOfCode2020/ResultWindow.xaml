@@ -1,0 +1,28 @@
+﻿<Window x:Class="AdventOfCode2020.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdventOfCode2020"
+        mc:Ignorable="d"
+        Title="Puzzle Result" Height="240" Width="400" Loaded="Window_Loaded">
+    <Grid Background="DimGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="LblTitle" Grid.Row="0" Grid.Column="0" Content="Result of puzzle #X" VerticalAlignment="Bottom" 
+               FontSize="16" Foreground="WhiteSmoke" Margin="10,0,0,0"></Label>
+        <TextBox x:Name="TbResult" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,0,0" 
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightGray"
+                 Text="000 000" TextWrapping="NoWrap" FontSize="36" IsReadOnly="True" />
+
+        <Button Grid.Row="1" Grid.Column="1" x:Name="BtnCopy" Content="Copy" Margin="0,0,10,0" Click="BtnCopy_Click"></Button>
+    </Grid>
+</Window>

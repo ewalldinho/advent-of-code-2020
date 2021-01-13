@@ -116,7 +116,8 @@ namespace AdventOfCode2020
 
         private void ShowResult(int day, string result)
         {
-            MessageBox.Show($"Solution for day {day}: {result}", "Solution", MessageBoxButton.OK, MessageBoxImage.Information);
+            var resultWindow = new ResultWindow(day, result);
+            resultWindow.ShowDialog();
         }
     }
 }
