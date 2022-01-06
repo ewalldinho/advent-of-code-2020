@@ -22,13 +22,14 @@ namespace AdventOfCode2020.Solutions
                     return (busId * minutesToWait).ToString();
 
                 case Parts.Part2:
-                    var d = FindTimestampForDepartsWithOffset(buses);
-                    return d.ToString();
+                    var timestamp = FindTimestampForDepartsWithOffset(buses);
+                    return timestamp.ToString();
 
                 default:
                     throw new ApplicationException($"Invalid parameter {nameof(part)} value ({part})");
             }
         }
+
 
         private static (int busId, int minutesToWait) FindEarliestBus(int earliestTimestamp, IEnumerable<int> buses)
         {
@@ -51,7 +52,46 @@ namespace AdventOfCode2020.Solutions
             return (earliestBusId, earliestBusDeparture - earliestTimestamp);
         }
 
-        private long FindTimestampForDepartsWithOffset(List<int> buses)
+        private static long FindTimestampForDepartsWithOffset(IReadOnlyList<int> buses)
+        {
+            var departureOffset = 0L;
+            long increment = buses.FirstOrDefault(id => id != 0);
+            for (var index = 0; index < buses.Count; index++)
+            {
+                if (buses[index] == 0) continue;
+                
+                while (0 != (departureOffset + index) % buses[index])
+                    departureOffset += increment;
+
+                var leastCommonMultiple = FindLeastCommonMultiple(increment, buses[index]);
+                increment = leastCommonMultiple;
+            }
+            
+            return departureOffset;
+        }
+
+        private static long FindLeastCommonMultiple(long a, long b)
+        {
+            return a * b / FindGreatestCommonDivisor(a, b);
+        }
+
+        private static long FindGreatestCommonDivisor(long a, long b)
+        {
+            var dividend = Math.Max(a, b);
+            var divisor = Math.Min(a, b);
+            var remainder = dividend % divisor;
+            while (remainder > 0)
+            {
+                dividend = divisor;
+                divisor = remainder;
+                remainder = dividend % divisor;
+            }
+
+            return divisor;
+        }
+
+        // inefficient brute force method
+        private long FindTimestampForDepartsWithOffset_Inefficient(List<int> buses)
         {
             var maxId = buses.Max();
             var index = buses.IndexOf(maxId);
